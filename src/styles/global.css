@@ -152,3 +152,86 @@ hr {
   /* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
   white-space: nowrap;
 }
+
+pre:has(code) {
+  position: relative;
+}
+
+pre button.copy {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  height: 28px;
+  width: 28px;
+  padding: 0;
+  display: flex;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+pre button.copy span {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+pre button.copy .ready {
+  background-image: url(/icons/copy.svg);
+}
+
+pre button.copy .success {
+  display: none;
+  background-image: url(/icons/copy-success.svg);
+}
+
+pre button.copy.copied .success {
+  display: block;
+}
+
+pre button.copy.copied .ready {
+  display: none;
+}
+
+pre:has(code) {
+  position: relative;
+}
+
+pre button.copy {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  height: 28px;
+  width: 28px;
+  padding: 0;
+  display: flex;
+
+  & span {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  & .ready {
+    background-image: url(/icons/copy.svg);
+  }
+
+  & .success {
+    display: none;
+    background-image: url(/icons/copy-success.svg);
+  }
+
+  &.copied {
+    & .success {
+      display: block;
+    }
+
+    & .ready {
+      display: none;
+    }
+  }
+}
