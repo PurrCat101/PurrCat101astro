@@ -14,8 +14,16 @@ type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;
 const { Content } = await render(post);
+
+// Extract headings from the content
+const headings = post.body ? post.body.match(/^#{1,3}\s.+$/gm)?.map((heading) => {
+	const depth = heading.match(/^#+/)?.[0].length || 1;
+	const text = heading.replace(/^#+\s/, '');
+	const slug = text.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+	return { depth, slug, text };
+}) || [] : [];
 ---
 
-<BlogPost {...post.data}>
+<BlogPost {...post.data} headings={headings}>
 	<Content />
 </BlogPost>

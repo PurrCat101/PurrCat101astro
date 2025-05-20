@@ -4,6 +4,7 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import pagefind from "astro-pagefind";
 import { addCopyButton } from "shiki-transformer-copy-button";
+import remarkToc from "remark-toc";
 
 export default defineConfig({
   site: "https://example.com",
@@ -17,5 +18,6 @@ export default defineConfig({
         }),
       ],
     },
+    remarkPlugins: [[remarkToc, { heading: "Table of Contents", maxDepth: 3 }]],
   },
 });
